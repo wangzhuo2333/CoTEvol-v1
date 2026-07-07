@@ -1,0 +1,6 @@
+Solve the following math problem step by step. Show all necessary reasoning and computations clearly.
+
+At the end, give your final answer in the format: The final answer is $\boxed{{...}}$
+
+[Problem]
+{problem}

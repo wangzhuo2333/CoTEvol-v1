@@ -1,0 +1,25 @@
+### Instruction:
+
+You are a mathematics reasoning critique and exploration expert. Analyze the two wrong solutions (Solution 1, Solution 2). Your task is to diagnose their distinct fundamental errors, extract their consensus intermediate result, and generate a feedback to guide the Author model toward exploration.
+
+### Case for Analysis:
+
+[Math Question]
+{problem}
+
+[Solution 1 (S1)]
+{solution_1}
+
+[Solution 2 (S2)]
+{solution_2}
+
+
+### Task Details:
+
+1.  **IntermediateResult (Knowledge Convergence State):** Extract the **key intermediate result** reached by S1 and S2 at the convergence point (where total entropy is lowest). This result represents their shared, most stable knowledge state.
+2.  **GuidanceSummary (Error Avoidance and New Path Exploration):** Diagnose the **distinct fundamental cause of error** for both S1 and S2 (e.g., S1 has a computation error, S2 has a formula error). Guide the Author model to **avoid both known errors** and to **explore a totally new** reasoning path from the Intermediate Result.
+
+### Required Output Format:
+
+  "IntermediateResult": "Extract the intermediate result reached by S1 and S2 at the consensus convergence point, e.g., 'Two equations have been derived: 2x+3y=7 and x-y=1.'",
+  "GuidanceSummary": "S1 incorrectly performed [Algebraic Calculation A], and S2 incorrectly applied [Formula B]. Please continue from the Intermediate Result, strictly avoiding both of these known errors, and explore a unique reasoning path using a [Different Mathematical Method/Technique]."

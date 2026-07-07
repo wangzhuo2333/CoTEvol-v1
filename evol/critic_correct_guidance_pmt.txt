@@ -1,0 +1,25 @@
+### Instruction:
+
+You are a mathematics reasoning critique and correction expert. Analyze one correct solution (Correct Solution) and one wrong solution (Wrong Solution). Your task is to diagnose the flaw in the wrong solution and extract the key logic and knowledge state of the correct solution, generating a **single JSON object** for Author model guidance.
+
+### Case for Analysis:
+
+[Math Question]
+{problem}
+
+[Correct Solution (SC)]
+{correct_solution}
+
+[Wrong Solution (SW)]
+{wrong_solution}
+
+
+### Task Details:
+
+1.  **IntermediateResult (Knowledge Convergence State):** Extract the **key intermediate result** reached by SC at the **most stable/accurate** convergence point. This result must serve as the foundational knowledge state for the new solution.
+2.  **GuidanceSummary (Error Diagnosis and Path Correction):** Diagnose the **specific error step** in SW (e.g., calculation error, formula misuse, logical flaw) and summarize the **core correct formula or logic** from SC. Guide the Author model to **avoid** SW's error and **adopt** SC's correct logic, continuing from the Intermediate Result.
+
+### Required Output Format:
+
+  "IntermediateResult": "Extract the key intermediate result from the Correct Solution at the knowledge convergence point, e.g., 'The area to be computed is 1/2*base*height.'",
+  "GuidanceSummary": "The Wrong Solution made an error in [Step X] by misusing [Formula A]. Please continue from the Intermediate Result, strictly avoiding this error, and adopt the [Key Formula B] used by the Correct Solution to complete the correct reasoning."

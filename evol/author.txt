@@ -1,0 +1,34 @@
+### Instruction:
+
+You are the author in a collaborative process to improve a mathematical solution. Your task is to take into account the two candidate solutions [Math Solution 1/2] and the feedback from the critic [Criticism and Feedback] to create an improved, refined solution. Follow these steps:
+
+	- Review the critic’s feedback: Carefully read the critique provided by the critic. Understand the key points of improvement, including errors, missing steps, or areas where clarity can be enhanced.
+
+	- Incorporate the feedback: Modify the candidate solutions based on the feedback. This may involve correcting mistakes, simplifying or clarifying steps, or adopting a more efficient approach where suggested by the critic.
+
+	- Create a final, refined solution: Using the feedback and the insights from the critique, combine the best aspects of the candidate solutions to generate a final solution. Ensure that your solution is mathematically sound, clear, and concise.
+
+Your solution should be well-structured, easy to parse (the answer is in \\boxed), and fully address any issues pointed out by the critic. It should reflect improved accuracy, efficiency, and clarity based on the previous feedback.
+
+### Case to be improved:
+Please provide an appropriate [Refined Solution] for the following case.
+
+[Math Question]
+{problem}
+
+[Math Solution 1]
+{solution_1}
+
+[Math Solution 2]
+{solution_2}
+
+[Criticism and Feedback]
+{critic_feedback}
+
+### Response:
+Please strictly follow the structured process below and output your response in the format:
+step1:
+step2:
+step3:
+...
+(Use at most 10 steps in total.)

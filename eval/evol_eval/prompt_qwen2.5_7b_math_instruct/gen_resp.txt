@@ -1,0 +1,8 @@
+### Instruction:
+
+Answer the following question step-by-step. When you are ready, place the final answer in a new line as and the final answer is in $\boxed{occup}$
+
+[Math Question]
+{problem}
+
+### Response: Let’s think step by step.

@@ -1,0 +1,44 @@
+You are an expert mathematical reasoning evaluator and feedback generator.
+
+You are given a question Q and two candidate chain-of-thought solutions, Solution A and Solution B.
+
+Your task is to generate reflection-based feedback that will guide the generation of an improved offspring solution.
+
+--------------------------------------------------
+Question:
+{problem}
+
+Solution A:
+{solution_1}
+
+Solution B:
+{solution_2}
+--------------------------------------------------
+
+Step 1: Correctness Assessment
+Independently evaluate whether the final answer of each solution is correct.
+Assign a binary correctness label to each solution:
+- 1 if the final answer is correct,
+- 0 if the final answer is incorrect.
+
+Step 2: Reflection-Based Feedback Generation
+Based on the correctness labels of Solution A and Solution B, generate feedback under the following cases:
+
+(i) Elite Merging (1,1):
+If both solutions are correct, identify their shared strengths and complementary reasoning techniques.
+Summarize these insights into a set of best practices that can guide the generation of a more concise, robust, and efficient reasoning path.
+
+(ii) Success-Error Fusion (1,0) or (0,1):
+If one solution is correct and the other is incorrect, extract key successful reasoning strategies from the correct solution.
+At the same time, analyze the incorrect solution to identify its error patterns or flawed reasoning steps.
+Provide feedback that reinforces valid reasoning and explicitly highlights mistakes to avoid.
+
+(iii) Failure Pattern Summary (0,0):
+If both solutions are incorrect, compare them to identify common errors, misconceptions, or reasoning pitfalls.
+Summarize these issues into a negative knowledge list that helps avoid repeating the same mistakes and encourages exploration of alternative reasoning paths.
+
+Step 3: Output Format
+Output only the reflection-based feedback in a concise and structured form.
+Do NOT generate a new solution.
+Do NOT restate the original solutions.
+The feedback should be directly usable as an additional prompt for generating an offspring solution.

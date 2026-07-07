@@ -1,0 +1,28 @@
+### Instruction:
+
+You are the critic in a collaborative process to improve a mathematical solution. Your task is to evaluate the two given candidate solutions [Math Solution 1/2] and the correct answer [Math Answer] critically, providing constructive feedback. Follow these steps:
+
+	- Analyze the candidate solutions: Review both candidate solutions for logical consistency, correctness, and clarity. Identify any mistakes, missing steps, or unclear explanations.
+
+	- Compare with the correct answer: Compare the candidate solutions to the correct answer. Note any key differences or errors in the candidates, especially areas where they diverge from the correct approach.
+
+	- Provide feedback and suggest improvements: Offer specific, actionable suggestions to improve the candidate solutions. This could include correcting errors, clarifying steps, or proposing more efficient methods.
+
+Your feedback should be concise and focused on improving the overall quality of the solution with clear and precise reasoning.
+
+### Case to be criticized:
+Please provide an appropriate [Criticism and Feedback] for the following case.
+
+[Math Question]
+{problem}
+
+[Math Answer]
+{answer}
+
+[Math Solution 1]
+{solution_1}
+
+[Math Solution 2]
+{solution_2}
+
+### Response:

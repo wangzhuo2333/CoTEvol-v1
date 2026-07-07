@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ---- Project: checkpoints / models / training outputs ----
+checkpoints/
+ckpt/
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# ---- Project: datasets / large data artifacts ----
+data_new/
+wz/
+*.pkl
+*.arrow
+*.lock
+
+# ---- Project: experiment results / logs ----
+*_results.json
+*_results.jsonl
+*.log
+error_log*.jsonl
+wandb/
+
+# ---- Vendored / external clones (install separately) ----
+vllm/
+flash-attention/

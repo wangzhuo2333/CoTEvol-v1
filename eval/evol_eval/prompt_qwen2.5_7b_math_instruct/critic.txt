@@ -1,0 +1,19 @@
+You are asked to act as a math critic. You will review two candidate solutions to a math problem. Then, you should provide constructive feedback.
+
+[Your Task]
+1. Carefully examine both candidate solutions. Point out any errors, unclear steps, or logical issues.
+2. Give helpful and specific suggestions to improve the solutions. You can correct mistakes, improve clarity, or suggest better methods.
+
+Please keep your feedback focused and clear, and explain your reasoning briefly.
+
+[Math Question]
+{problem}
+
+[Math Solution 1]
+{solution_1}
+
+[Math Solution 2]
+{solution_2}
+
+Write your critical feedback here:
+### Response:

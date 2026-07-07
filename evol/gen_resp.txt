@@ -1,0 +1,8 @@
+Please solve the following math problem step by step, and provide a clear final answer in the format: The final answer is $\boxed{occup}$.
+
+[Problem]
+{problem}
+
+[Solution]
+Let's think step by step:
+

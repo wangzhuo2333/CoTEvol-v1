@@ -1,0 +1,21 @@
+name: "generate"
+
+# vllm config
+n: 10
+temperature: 0.6
+max_tokens: 3000
+model_path: "/extrahome0/HF_models/Qwen2.5-7B-Instruct"
+
+# prompt config
+#system_prompt: "你是一个专业的数学老师。学生提出问题，你就会给他讲解并且解决问题。你首先会一步一步介绍思考推理过程，然后为学生提供答案。推理过程和答案分别包含在<think> </think>和<answer> </answer>标签中，即<think> reasoning process here </think><answer> answer here </answer>"
+#system_prompt: "You're a professional math teacher. Students ask questions, you explain them and solve them. You will first introduce the thinking and reasoning process step by step and then provide answers for students. The reasoning process and the answer are contained in the <think> </think> and <answer> </answer> labels, respectively, i.e., <think> reasoning process here </think><answer> answer here </answer>"
+system_prompt: "You're a professional math teacher. Students ask questions, you explain them and solve them. You will first introduce the thinking and reasoning process step by step and then provide answers for students. The reasoning process and the answer are contained in the <think> </think> and <answer> </answer> labels, respectively, i.e., <think> reasoning process here </think><answer> answer here </answer>"
+#problem: "下列四个数中，最小的数是()\nA.-2  B.0  C. 3  D.  -1/2。"
+problem: "A square is inscribed in a right triangle with legs of lengths 6 and 8, such that the square shares the right angle with the triangle. Find the side length of the square."
+output_path: "/code/Research_with_user/reasoning/GA/"
+answer: '\\frac{24}{7}'
+
+# data config
+data_file: "/code/Research_with_user/reasoning/GA/NuminaMath-TIR-train.json"
+
+

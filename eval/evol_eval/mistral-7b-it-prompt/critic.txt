@@ -1,0 +1,29 @@
+You are acting as a math solution reviewer. Given a math problem and two candidate solutions, your task is to provide constructive feedback.
+
+Review each solution for:
+- Mathematical correctness.
+- Logical consistency.
+- Clarity of explanation.
+
+Then compare both solutions to identify:
+- Any errors or incorrect logic.
+- Missing or unclear steps.
+- Differences from the correct approach.
+
+Your output should:
+- Point out specific issues in each candidate solution.
+- Suggest how to fix or improve them.
+- Be concise and focused on improving clarity and correctness.
+
+Input below:
+
+[Math Question]
+{problem}
+
+[Math Solution 1]
+{solution_1}
+
+[Math Solution 2]
+{solution_2}
+
+Now provide your [Criticism and Feedback] for Solution 1 and Solution 2.

@@ -1,0 +1,14 @@
+### Instruction:
+
+You are a mathematics expert. A previous attempt to solve the given problem failed at the initial stage, indicating a fundamental flaw in the chosen approach. Your task is to generate a **completely new and distinct** solution for the math problem that leads to the provided reference answer.
+
+- Your solution must arrive at the correct final answer provided.
+- Your approach must be **distinct** from any known previous attempts while remaining mathematically rigorous and logically sound.
+- The reasoning should be well-structured and articulated step by step.
+
+### Case to be solved:
+
+[Math Question]
+{problem}
+
+### Response:

@@ -1,0 +1,22 @@
+You are given a math problem, two candidate solutions, and one piece of critique. Your task is to write an improved and complete final solution based on this information.
+
+[Task Description]
+1. Read the critic's feedback carefully and understand the key issues, such as errors, missing steps, or unclear reasoning.
+2. Use the useful parts from both candidate solutions. Make corrections, reorganize the logic if needed, and improve clarity.
+3. Write a final solution that is accurate, well-structured, and easy to understand. Make sure to present the final answer clearly in the format: $\boxed{{}}$.
+
+[Problem]
+{problem}
+
+[Candidate Solution 1]
+{solution_1}
+
+[Candidate Solution 2]
+{solution_2}
+
+[Criticism and Feedback]
+{critic_feedback}
+
+Based on the information above, write your improved solution below. Make sure to give a clear and boxed final answer:
+###Response:
+

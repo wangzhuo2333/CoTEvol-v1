@@ -1,0 +1,61 @@
+
+version: "1.2"
+
+# path
+#problem_path: /extrahome0/HF_datasets/s1k
+#problem_path: "di-zhang-fdu/AIME_1983_2024" # GAIR/LIMO, simplescaling/s1K
+#problem_path: "/extrahome0/user/output/evol_s1k/v1/evol_s1k_v.pkl" # GAIR/LIMO, simplescaling/s1K
+# problem_path: "./data/s1k_train.pkl" # GAIR/LIMO, simplescaling/s1K
+# problem_path: "./data/limo.pkl"
+# problem_path: "/inspire/hdd/WORKSPACE_ID/public-project/USER_ID/ifdr-main-v2/ifdr-main-qwen1.5/evol/data/limo.pkl"
+# problem_path: "./data/filtered_math7500_6010.pkl"
+# problem_path: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-v2/ifdr-main-qwen1.5/evol/data/s1k_train.pkl"
+# problem_path: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-wz-v2/evol/data/limo.pkl"
+# problem_path: "/inspire/hdd/global_user/USER_ID/user/output/deepmath/deepmath_10k.pkl"
+problem_path: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-wz-v2/wz/2026_02_16_data_split/aime_hard.pkl"
+data_type: "v1.1"
+output_path: "./2026_02_16_aime_hard_no_gt/"
+data_name: "limo" # limo, s1k, o1j
+order: "+"
+
+# 外部vllm server配置信息
+base_url: "http://localhost:8001/v1" # vLLM服务的地址 端口1/2 8000/8012
+api_key: "EMPTY"  # 如果设置了API密钥需要填写
+#model_path: "/extrahome0/HF_models/Qwen2.5-7B-Instruct"
+# model_path: "/inspire/hdd/WORKSPACE_ID/public-project/USER_ID/Qwen2.5-7B-Instruct"
+model_path: '/inspire/hdd/global_user/USER_ID/user/models/Qwen2.5-7B-Instruct'
+
+# 初始进化种群配置
+batch_size: 128
+pop_size: 4
+gen_responses_temp: 0.6
+max_response_len: 2048
+#gen_responses_prompt: "/root/workspace/code/reason/evol/gen_resp.txt"
+gen_responses_prompt: "./gen_resp.txt"
+
+# crossover
+gen_critic_temp: 0.6
+max_critic_len: 2048
+#critic_prompt: "/root/workspace/code/reason/evol/critic.txt"
+critic_prompt: "./critic.txt"
+critic_correct_fusion_pmt: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-wz-v2/evol/critic_correct_fusion_pmt.txt"
+critic_correct_guidance_pmt: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-wz-v2/evol/critic_correct_guidance_pmt.txt"
+critic_wrong_exploration_pmt: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-wz-v2/evol/critic_wrong_exploration_pmt.txt"
+
+gen_author_temp: 0.6
+max_author_len: 2048
+#author_prompt: "/root/workspace/code/reason/evol/author.txt"
+author_prompt: "./author.txt"
+
+# mutation
+gen_mutation_temp: 0.6
+max_mutation_len: 2048
+mutation_prompt: "./mutation.txt"
+mutation_prompt_1: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-wz-v2/evol/mutation_v2_no_gt.txt"
+mutation_prompt_2: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-wz-v2/evol/mutation_v1_no_gt.txt"
+mutation_prompt_3: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-wz-v2/evol/mutation_v3_no_gt.txt"
+
+# 进化配置
+iter_num: 3
+
+judge_critique_pmt: "/inspire/hdd/global_user/USER_ID/user/code/ifdr-main-wz-v2/evol/judge_critique_pmt.txt"

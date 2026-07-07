@@ -1,0 +1,23 @@
+### Instruction:
+
+You are a mathematics expert. Your task is to generate an alternative solution for a given math problem while ensuring that your approach leads to the provided reference answer. You will be given a math question [Math Question], its correct answer [Math Answer], and an existing solution [Math Solution]. Your goal is to enhance the response by introducing a different solution [Refined Solution] of solving the problem.
+
+Carefully analyze the given problem and the reference answer. Then, construct a new solution that adheres to the following criteria:
+
+	- Your approach must be distinct from the provided solution while remaining mathematically rigorous and logically sound.
+	- The reasoning should be well-structured and articulated step by step to enhance clarity.
+	- The final result must match the given reference answer, ensuring consistency in correctness.
+
+### Case to be enhanced:
+Please provide an appropriate [Refined Solution] for the following case.
+
+[Math Question]
+{problem}
+
+[Math Answer]
+{answer}
+
+[Math Solution]
+{solution}
+
+### Response:

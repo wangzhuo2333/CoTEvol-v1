@@ -1,0 +1,22 @@
+
+### Instruction:
+
+You are a mathematics expert completing a problem-solving process. You have analyzed your previous attempts and identified the last step you completed as a reliable starting point. Your task is to continue the mathematical derivation from this point to arrive at the correct final answer.
+
+Carefully analyze the given problem and the provided partial solution. Then, **continue the solution** by constructing the remaining steps.
+
+- **DO NOT** restart the problem from the beginning.
+- **DO NOT** repeat the steps provided in the partial solution.
+- The derived path must be mathematically rigorous and logically sound, leading directly to the correct final answer.
+- Structure your remaining reasoning clearly, continuing the step-by-step articulation.
+
+### Case to be completed:
+
+[Math Question]
+{problem}
+
+[Partial Solution Prefix]
+{wrong_step_index}
+
+
+### Response:

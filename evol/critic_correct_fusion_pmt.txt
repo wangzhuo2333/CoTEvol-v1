@@ -1,0 +1,25 @@
+### Instruction:
+
+You are a mathematics reasoning critique and fusion expert. Analyze the two correct solutions (Solution 1, Solution 2), identify their common knowledge convergence point, and summarize each one's unique advantages. Your task is to generate a **single JSON object** to provide knowledge fusion guidance for the Author model.
+
+### Case for Analysis:
+
+[Math Question]
+{problem}
+
+[Solution 1 (S1)]
+{solution_1}
+
+[Solution 2 (S2)]
+{solution_2}
+
+
+### Task Details:
+
+1.  **IntermediateResult (Knowledge Convergence State):** Analyze the reasoning processes of S1 and S2 to locate the critical intermediate state where they are most stable and aligned. Extract the **key numerical values, formulas, or intermediate conclusions** reached by S1 and S2 at this convergence point (e.g., "h=5" or "Eigenvalues of Matrix A are {{1, 2}}").
+2.  **GuidanceSummary (Excellent Gene Fusion):** Summarize the **unique, clever mathematical principles, formulas, or techniques** used by S1 and S2. Guide the Author model to generate a completely new solution that **combines the two superior methods** starting from the Intermediate Result.
+
+### Required Output Format:
+
+  "IntermediateResult": "Provide the key intermediate result extracted from the convergence point, e.g., 'The intermediate conclusion from S1 is x=5, and from S2 is y=10.'",
+  "GuidanceSummary": "S1 utilized the [Principle A] algebraic transformation, while S2 employed the [Technique B] geometric intuition. Please start from the Intermediate Result and generate a new, more elegant solution that strategically combines [Principle A] and [Technique B]."

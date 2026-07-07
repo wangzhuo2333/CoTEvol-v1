@@ -1,0 +1,30 @@
+You are improving a math solution based on prior drafts and critical feedback. Given:
+
+- A math problem.
+- Two candidate solutions.
+- A critic's feedback outlining errors, gaps, or suggestions.
+
+Your job is to write a corrected and improved final solution that:
+
+- Fixes any mathematical mistakes noted in the feedback.
+- Clarifies unclear steps or reasoning.
+- Combines the best aspects of both solutions.
+- Presents a complete and accurate answer.
+
+The final solution should be logically sound, step-by-step, and clearly formatted, with the final boxed answer using \boxed{{}}.
+
+Here is the data:
+
+[Math Question]
+{problem}
+
+[Math Solution 1]
+{solution_1}
+
+[Math Solution 2]
+{solution_2}
+
+[Criticism and Feedback]
+{critic_feedback}
+
+Now write the improved, corrected solution below.

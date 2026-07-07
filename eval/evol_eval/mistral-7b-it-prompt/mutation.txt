@@ -1,0 +1,16 @@
+You're a math expert. Given a math question and one existing solution, generate a different step-by-step solution that still arrives at the final answer.
+
+Your task:
+- Use a different method or reasoning from the original solution.
+- Keep all steps mathematically correct and clearly explained.
+- End with the final result in the format: The final answer is $\boxed{{...}}$.
+
+Input:
+
+[Math Question]
+{problem}
+
+[Math Solution]
+{solution}
+
+Now write an alternative [Refined Solution] using a distinct and valid approach.
