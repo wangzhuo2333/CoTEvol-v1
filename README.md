@@ -15,8 +15,6 @@ mathematical reasoning tasks.
   <img src="eval/method_v1.pdf" alt="CoTEvol framework overview" width="90%">
 </p>
 
-> **TODO:** Put your method/framework figure at `assets/method.png`
-> (see `assets/README.md`). Add a one- or two-sentence caption describing the pipeline.
 
 ## Installation
 
