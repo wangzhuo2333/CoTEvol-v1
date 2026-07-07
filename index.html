@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoTEvol: Self-Evolving Chain-of-Thoughts for Data Synthesis in Mathematical Reasoning</title>
+<meta name="description" content="CoTEvol is a genetic evolutionary framework that casts Chain-of-Thought generation as a population-based search over reasoning trajectories, improving CoT synthesis success by over 30% and boosting downstream accuracy by 6.6%.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117; --panel:#161b22; --panel-2:#1c2330; --border:#2a3240;
+  --text:#e6edf3; --muted:#9aa7b4; --accent:#6ea8fe; --accent-2:#8b5cf6;
+  --good:#3fb950; --code:#c9d1d9;
+  --maxw:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ---------- hero ---------- */
+header.hero{
+  padding:64px 0 40px;text-align:center;
+  background:radial-gradient(1200px 480px at 50% -10%, rgba(110,168,254,.18), transparent 60%);
+  border-bottom:1px solid var(--border);
+}
+.badge{
+  display:inline-block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);background:rgba(110,168,254,.1);border:1px solid rgba(110,168,254,.35);
+  padding:5px 14px;border-radius:999px;margin-bottom:22px;font-weight:600;
+}
+h1.title{
+  font-size:clamp(28px,4.4vw,46px);font-weight:800;line-height:1.15;
+  letter-spacing:-.02em;max-width:900px;margin:0 auto 10px;
+}
+h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{color:var(--muted);font-size:clamp(15px,2vw,18px);max-width:760px;margin:0 auto 28px}
+
+/* authors */
+.authors{max-width:820px;margin:0 auto 6px;font-size:16px}
+.authors a{color:var(--text);font-weight:500}
+.authors .sup{color:var(--accent);font-size:12px;vertical-align:super}
+.affil{color:var(--muted);font-size:13.5px;max-width:820px;margin:10px auto 4px;line-height:1.9}
+.notes{color:var(--muted);font-size:12.5px;margin-top:6px}
+
+/* buttons */
+.links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:10px;
+  font-weight:600;font-size:15px;border:1px solid var(--border);background:var(--panel);
+  color:var(--text);transition:.18s;
+}
+.btn:hover{text-decoration:none;transform:translateY(-2px);border-color:var(--accent);background:var(--panel-2)}
+.btn svg{width:18px;height:18px;fill:currentColor}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#0d1117}
+.btn.primary:hover{filter:brightness(1.08)}
+
+/* ---------- sections ---------- */
+section{padding:56px 0;border-bottom:1px solid var(--border)}
+h2.sec{font-size:26px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+h2.sec::before{content:"";width:5px;height:26px;border-radius:3px;background:linear-gradient(var(--accent),var(--accent-2))}
+.lead{color:var(--muted);margin-bottom:26px;max-width:820px}
+
+/* highlight stat cards */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:8px}
+.stat{
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px;
+}
+.stat .num{font-size:34px;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{color:var(--muted);font-size:14px;margin-top:6px}
+
+/* abstract */
+.abstract{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:28px 30px;font-size:16px;color:#d7e0ea}
+
+/* method cards */
+.framework{margin:0 0 30px}
+.framework img{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:14px;background:#fff;padding:14px}
+.framework figcaption{color:var(--muted);font-size:13.5px;margin-top:12px;text-align:center}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px;transition:.18s}
+.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.card .ico{font-size:22px;margin-bottom:12px}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:14.5px}
+
+/* table */
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+th,td{padding:11px 12px;text-align:center;border-bottom:1px solid var(--border)}
+th{background:var(--panel-2);color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
+td:first-child,th:first-child{text-align:left}
+tbody tr:hover{background:rgba(110,168,254,.05)}
+tr.best td{color:var(--text);font-weight:700}
+tr.best{background:rgba(63,185,80,.08)}
+.win{color:var(--good);font-weight:700}
+.cap{color:var(--muted);font-size:13px;margin-top:12px}
+
+/* bibtex */
+pre{
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:22px;
+  overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--code);line-height:1.7;
+}
+.copy{float:right;background:var(--panel-2);border:1px solid var(--border);color:var(--muted);
+  border-radius:8px;padding:6px 12px;font-size:12.5px;cursor:pointer;font-family:inherit;transition:.15s}
+.copy:hover{color:var(--text);border-color:var(--accent)}
+
+footer{padding:40px 0;text-align:center;color:var(--muted);font-size:14px}
+.tag{display:inline-block;background:var(--panel-2);border:1px solid var(--border);color:var(--muted);
+  font-size:12px;padding:3px 10px;border-radius:6px;margin:2px;font-family:'JetBrains Mono',monospace}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">ACL 2026 &nbsp;·&nbsp; Mathematical Reasoning</span>
+    <h1 class="title"><span class="grad">CoTEvol</span>: Self-Evolving Chain-of-Thoughts for<br>Data Synthesis in Mathematical Reasoning</h1>
+    <p class="subtitle">A genetic evolutionary framework that reframes Chain-of-Thought synthesis as a population-based search over reasoning trajectories.</p>
+
+    <div class="authors">
+      Zhuo Wang<span class="sup">1,2,*</span>&nbsp;&nbsp;
+      Zhuo Zhang<span class="sup">5,*</span>&nbsp;&nbsp;
+      Yafu Li<span class="sup">3</span>&nbsp;&nbsp;
+      Yu Cheng<span class="sup">2,3,†</span>&nbsp;&nbsp;
+      Lizhen Qu<span class="sup">4,†</span>&nbsp;&nbsp;
+      Zenglin Xu<span class="sup">1,6,†</span>
+    </div>
+    <div class="affil">
+      <span class="sup">1</span>Fudan University &nbsp;·&nbsp;
+      <span class="sup">2</span>Shanghai Innovation Institute &nbsp;·&nbsp;
+      <span class="sup">3</span>The Chinese University of Hong Kong &nbsp;·&nbsp;
+      <span class="sup">4</span>Monash University &nbsp;·&nbsp;
+      <span class="sup">5</span>Independent Researcher &nbsp;·&nbsp;
+      <span class="sup">6</span>Shanghai Academy of AI for Science
+    </div>
+    <div class="notes">* Equal contribution &nbsp;&nbsp;†&nbsp;Corresponding authors</div>
+
+    <div class="links">
+      <a class="btn primary" href="https://arxiv.org/abs/2604.14768" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm8 1.5V8h4.5L14 3.5z"/></svg>
+        Paper
+      </a>
+      <a class="btn" href="https://arxiv.org/abs/2604.14768" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        arXiv
+      </a>
+      <a class="btn" href="https://github.com/wangzhuo2333/CoTEvol-v1/tree/main" id="codeBtn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+        Code
+      </a>
+      <a class="btn" href="./acl-cotevol.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14-4-4h2.5V9h3v4H16l-4 4z"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HIGHLIGHTS -->
+<section>
+  <div class="wrap">
+    <h2 class="sec">Highlights</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">+30%</div><div class="lbl">Higher correct-CoT synthesis success rate</div></div>
+      <div class="stat"><div class="num">+6.6%</div><div class="lbl">Average accuracy gain across 8 math benchmarks</div></div>
+      <div class="stat"><div class="num">82&ndash;88%</div><div class="lbl">CoT synthesis success on S1K / LIMO</div></div>
+      <div class="stat"><div class="num">4 &times; 3</div><div class="lbl">Population of 4, evolved over 3 iterations</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABSTRACT -->
+<section>
+  <div class="wrap">
+    <h2 class="sec">Abstract</h2>
+    <div class="abstract">
+      Large Language Models exhibit strong mathematical reasoning when trained on high-quality
+      Chain-of-Thought (CoT) that articulates intermediate steps, yet costly CoT curation hinders
+      further progress. While existing remedies such as distillation from stronger LLMs and
+      self-synthesis based on test-time search alleviate this issue, they often suffer from
+      diminishing returns or high computing overhead. We propose <b>CoTEvol</b>, a genetic
+      evolutionary framework that casts CoT generation as a population-based search over reasoning
+      trajectories. Candidate trajectories are iteratively evolved through <b>reflective global
+      crossover</b> at the trajectory level and <b>uncertainty-guided local mutation</b> at the step
+      level, enabling holistic recombination and fine-grained refinement. Lightweight, task-aware
+      fitness functions guide the evolutionary process toward accurate and diverse reasoning.
+      Empirically, CoTEvol improves correct-CoT synthesis success by over 30% and enhances structural
+      diversity with markedly improved efficiency. LLMs trained on these evolutionary CoT data achieve
+      an average gain of 6.6% across eight math benchmarks, outperforming previous distillation and
+      self-synthesis approaches.
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section>
+  <div class="wrap">
+    <h2 class="sec">How CoTEvol Works</h2>
+    <p class="lead">CoTEvol treats reasoning trajectories as individuals in a population and iteratively improves them through biologically inspired genetic operators, guided by rule-based fitness.</p>
+    <figure class="framework">
+      <img src="./method.png" alt="Overview of the CoTEvol framework: iterative fitness-based selection, reflective global crossover, and uncertainty-guided local mutation.">
+      <figcaption>The CoTEvol framework evolves mathematical chain-of-thoughts through iterative fitness-based selection, reflective global crossover, and uncertainty-guided local mutation.</figcaption>
+    </figure>
+    <div class="cards">
+      <div class="card">
+        <div class="ico">🧬</div>
+        <h3>Reflective Global Crossover</h3>
+        <p>Constructs high-level feedback to recombine complementary reasoning structures across parents &mdash; via Elite Merging, Success-Error Fusion, and Failure Pattern Summary.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎯</div>
+        <h3>Uncertainty-Guided Local Mutation</h3>
+        <p>Uses step-level entropy to locate the most unstable reasoning step, then adaptively raises the temperature to refine ambiguous parts while preserving stable prefixes.</p>
+      </div>
+      <div class="card">
+        <div class="ico">⚖️</div>
+        <h3>Task-Aware Fitness</h3>
+        <p>Three lightweight rule-based verifiers &mdash; answer correctness, format matching, and cosine length reward &mdash; jointly score each candidate trajectory.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔁</div>
+        <h3>Population-Based Evolution</h3>
+        <p>Boltzmann tournament selection balances exploitation and exploration, keeping selection pressure while preserving diversity until convergence.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔓</div>
+        <h3>Works Without Ground Truth</h3>
+        <p>A self-supervised variant replaces the correctness verifier with LLM self-evaluation, still yielding consistent gains over the base model.</p>
+      </div>
+      <div class="card">
+        <div class="ico">⚡</div>
+        <h3>Cost-Efficient</h3>
+        <p>Elicits the model's intrinsic reasoning potential, invoking stronger LLMs only for hard cases &mdash; a fallback used just 6.8% of the time on average.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section>
+  <div class="wrap">
+    <h2 class="sec">Main Results</h2>
+    <p class="lead">Performance on eight mathematical benchmarks with Qwen2.5-7B-Instruct trained on the S1K dataset using different data synthesis methods. CoTEvol consistently outperforms both distillation (D-CoT) and self-synthesis (S-CoT) baselines.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Method (S1K)</th><th>GSM8K</th><th>MATH500</th><th>Minerva</th>
+            <th>GaokaoEn</th><th>Olympiad</th><th>College</th><th>AIME24</th><th>AMC23</th><th>AVG.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Base (Qwen2.5-7B-Instruct)</td><td>79.6</td><td>69.4</td><td>35.7</td><td>55.3</td><td>34.7</td><td>35.8</td><td>13.3</td><td>47.5</td><td>46.4</td></tr>
+          <tr><td>D-CoT (DeepSeek-R1)</td><td>87.0</td><td>71.4</td><td>37.9</td><td>61.0</td><td>34.5</td><td>38.5</td><td>16.7</td><td>55.0</td><td>50.6</td></tr>
+          <tr><td>S-CoT (Self-Refine)</td><td>87.5</td><td>71.2</td><td>34.2</td><td>62.3</td><td>35.0</td><td>40.1</td><td>16.7</td><td>60.0</td><td>50.9</td></tr>
+          <tr><td>S-CoT (Best-of-N)</td><td>88.8</td><td>74.6</td><td>34.9</td><td>61.8</td><td>35.7</td><td>38.9</td><td>10.0</td><td>50.0</td><td>49.3</td></tr>
+          <tr><td>CoTEvol (w/o Ground Truth)</td><td>88.9</td><td>74.0</td><td>38.2</td><td>60.5</td><td>36.0</td><td>38.6</td><td>16.7</td><td>57.5</td><td>51.3</td></tr>
+          <tr class="best"><td>CoTEvol (w/ Ground Truth)</td><td>90.8</td><td>75.2</td><td>39.3</td><td>64.4</td><td>36.0</td><td>40.8</td><td>16.7</td><td>62.5</td><td class="win">53.2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cap">CoTEvol reaches a 53.2 average &mdash; +6.8 over the base model and +2.6 over the strongest baseline. Gains hold across foundational, intermediate, and competition-level tasks.</p>
+
+    <div style="height:34px"></div>
+
+    <h2 class="sec">Evolutionary Success Rate</h2>
+    <p class="lead">CoTEvol dramatically raises the share of problems for which a correct CoT is synthesized, especially with ground-truth supervision.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Dataset</th><th>Original SR</th><th>Evolved SR (w/o GT)</th><th>Evolved SR (w/ GT)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>S1K</td><td>0.359</td><td>0.491</td><td class="win">0.825</td></tr>
+          <tr><td>LIMO</td><td>0.420</td><td>0.537</td><td class="win">0.881</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cap">Success rate more than doubles on S1K (0.359 → 0.825) and rises sharply on LIMO (0.420 → 0.881).</p>
+  </div>
+</section>
+
+<!-- BIBTEX -->
+<section>
+  <div class="wrap">
+    <h2 class="sec">Citation</h2>
+    <p class="lead">If you find CoTEvol useful in your research, please consider citing:</p>
+    <pre><button class="copy" onclick="copyBib()">Copy</button><code id="bib">@inproceedings{wang2026cotevol,
+  title     = {CoTEvol: Self-Evolving Chain-of-Thoughts for Data
+               Synthesis in Mathematical Reasoning},
+  author    = {Wang, Zhuo and Zhang, Zhuo and Li, Yafu and
+               Cheng, Yu and Qu, Lizhen and Xu, Zenglin},
+  booktitle = {Proceedings of the Association for Computational
+               Linguistics (ACL)},
+  year      = {2026},
+  eprint    = {2604.14768},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI}
+}</code></pre>
+    <div style="margin-top:20px">
+      <span class="tag">Chain-of-Thought</span>
+      <span class="tag">Genetic Algorithm</span>
+      <span class="tag">Data Synthesis</span>
+      <span class="tag">Mathematical Reasoning</span>
+      <span class="tag">LLM</span>
+      <span class="tag">Self-Evolving</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    CoTEvol &middot; ACL 2026 &nbsp;|&nbsp; Fudan University, CUHK, Monash University &amp; collaborators<br>
+    <span style="font-size:12.5px">Page built for research dissemination. Replace the Code link with your repository URL.</span>
+  </div>
+</footer>
+
+<script>
+function copyBib(){
+  const t=document.getElementById('bib').innerText;
+  navigator.clipboard.writeText(t).then(()=>{
+    const b=document.querySelector('.copy');b.innerText='Copied!';
+    setTimeout(()=>b.innerText='Copy',1600);
+  });
+}
+// If no code URL is set, soften the Code button
+const cb=document.getElementById('codeBtn');
+if(cb.getAttribute('href')==='#'){cb.title='Add your repository URL here';}
+</script>
+</body>
+</html>
