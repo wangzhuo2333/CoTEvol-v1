@@ -12,7 +12,7 @@ mathematical reasoning tasks.
 ## Method
 
 <p align="center">
-  <img src="assets/method.png" alt="CoTEvol framework overview" width="90%">
+  <img src="eval/method_v1.pdf" alt="CoTEvol framework overview" width="90%">
 </p>
 
 > **TODO:** Put your method/framework figure at `assets/method.png`
