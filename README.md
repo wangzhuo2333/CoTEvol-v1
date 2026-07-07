@@ -1,6 +1,6 @@
 # CoTEvol
 
-(https://arxiv.org/abs/2604.14768)
+[arxiv: https://arxiv.org/abs/2604.14768, html:https://wangzhuo2333.github.io/CoTEvol-v1/docs/index.html]
 
 ## Abstract
 
